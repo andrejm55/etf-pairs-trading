@@ -1,0 +1,4 @@
+[workspace]
+members = ["etf_pairs_engine"]
+default-members = ["etf_pairs_engine"]
+resolver = "2"

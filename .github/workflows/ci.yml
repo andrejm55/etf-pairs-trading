@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Format
+        run: cargo fmt --check
+
+      - name: Clippy
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Test
+        run: cargo test
+
+      - name: Public demo backtest
+        working-directory: etf_pairs_engine
+        run: |
+          cargo run -- backtest-csv \
+            --bars-csv examples/sample_pairs_bars.csv \
+            --pair-id DEMO_PAIR \
+            --a DEMOA \
+            --b DEMOB \
+            --beta 1.0 \
+            --window 5 \
+            --min-samples 5 \
+            --entry-zscore 1.0 \
+            --exit-zscore 0.25 \
+            --max-holding-bars 4 \
+            --leg-notional 1000 \
+            --slippage-bps 1 \
+            --report-dir tmp_reports/demo_backtest

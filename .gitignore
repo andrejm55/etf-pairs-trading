@@ -1,0 +1,30 @@
+/target
+target/
+
+# Local secrets and environment files. Keep only checked-in examples.
+.env
+.env.*
+!.env.example
+
+# Local databases and logs.
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+logs/
+
+# Generated research/backtest artifacts and private market data.
+data/
+tmp_backtests/
+tmp_reports/
+ETF Pairs Trading Backtests/
+backtest_trades.csv
+Broader ETF backtests.csv
+
+# Local-only publication/private review notes.
+docs/PUBLICATION_CHECKLIST.md
+docs/REPRODUCIBILITY.md
+
+# OS/editor noise.
+.DS_Store

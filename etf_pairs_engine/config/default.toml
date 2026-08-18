@@ -1,0 +1,59 @@
+[engine]
+mode = "paper"
+loop_ms = 1000
+warn_loop_ms = 250
+
+[alpaca]
+paper = true
+trading_base_url = "https://paper-api.alpaca.markets"
+data_base_url = "https://data.alpaca.markets"
+api_key_env = "ALPACA_API_KEY"
+secret_key_env = "ALPACA_SECRET_KEY"
+
+[storage]
+enabled = true
+sqlite_path = "etf_pairs_audit.db"
+
+[strategy]
+rolling_window_ticks = 3600
+entry_zscore = 2.0
+exit_zscore = 0.5
+min_samples = 120
+max_spread_bps = 8.0
+min_half_life_ticks = 10
+
+[execution]
+passive_entry = true
+stale_order_seconds = 10
+max_leg_delay_seconds = 3
+use_aggressive_rescue = true
+client_order_prefix = "etf_pairs"
+
+[risk]
+initial_equity = 100000.0
+max_pair_notional = 5000.0
+max_total_notional = 5000.0
+max_daily_loss = 50.0
+max_open_pairs = 1
+max_holding_minutes = 60
+require_easy_to_borrow_for_short = true
+
+[[pairs]]
+id = "QQQ_XLK"
+a = "QQQ"
+b = "XLK"
+enabled = true
+beta = 1.15
+leg_notional = 2000.0
+# Optional pair-level strategy overrides are supported:
+# rolling_window_ticks, entry_zscore, exit_zscore, min_samples,
+# max_spread_bps, max_holding_bars, and signal_timeframe.
+# signal_timeframe can be "tick", "1h", "4h", or "1d".
+
+[[pairs]]
+id = "SMH_QQQ"
+a = "SMH"
+b = "QQQ"
+enabled = false
+beta = 1.30
+leg_notional = 500.0

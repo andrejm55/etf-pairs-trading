@@ -1,0 +1,162 @@
+[engine]
+mode = "paper"
+loop_ms = 1000
+warn_loop_ms = 250
+signal_bar_source = "alpaca"
+signal_bar_feed = "iex"
+signal_bar_poll_seconds = 60
+
+[alpaca]
+paper = true
+trading_base_url = "https://paper-api.alpaca.markets"
+data_base_url = "https://data.alpaca.markets"
+api_key_env = "ALPACA_API_KEY"
+secret_key_env = "ALPACA_SECRET_KEY"
+
+[storage]
+enabled = true
+sqlite_path = "etf_pairs_audit.db"
+
+[strategy]
+rolling_window_ticks = 60
+entry_zscore = 1.50
+exit_zscore = 0.00
+min_samples = 45
+max_spread_bps = 100.0
+min_half_life_ticks = 10
+
+[execution]
+passive_entry = true
+stale_order_seconds = 10
+max_leg_delay_seconds = 3
+use_aggressive_rescue = true
+client_order_prefix = "etf_pairs"
+
+[risk]
+initial_equity = 100000.0
+max_pair_notional = 9000.0
+max_total_notional = 30000.0
+max_daily_loss = 100000.0
+max_open_pairs = 6
+max_holding_minutes = 98
+require_easy_to_borrow_for_short = true
+
+[[pairs]]
+id = "XLE_OIH"
+a = "XLE"
+b = "OIH"
+enabled = true
+beta = 1.6100
+leg_notional = 1612.2
+signal_timeframe = "4h"
+rolling_window_ticks = 30
+min_samples = 22
+entry_zscore = 1.50
+exit_zscore = 0.00
+max_holding_bars = 48
+min_correlation = 0.50
+entry_confirmation_bars = 1
+min_expected_spread_move_after_costs = 40.3
+stop_loss_dollars = 100.0
+profit_protection_min_dollars = 50.0
+profit_protection_retrace_fraction = 0.50
+profit_protection_floor_dollars = 10.0
+
+[[pairs]]
+id = "SPY_IWM"
+a = "SPY"
+b = "IWM"
+enabled = true
+beta = 3.5100
+leg_notional = 1000.0
+signal_timeframe = "4h"
+rolling_window_ticks = 30
+min_samples = 22
+entry_zscore = 1.50
+exit_zscore = 0.00
+max_holding_bars = 48
+min_correlation = 0.50
+entry_confirmation_bars = 1
+min_expected_spread_move_after_costs = 25.0
+stop_loss_dollars = 100.0
+profit_protection_min_dollars = 50.0
+profit_protection_retrace_fraction = 0.50
+profit_protection_floor_dollars = 10.0
+
+[[pairs]]
+id = "SPY_QQQ"
+a = "SPY"
+b = "QQQ"
+enabled = true
+beta = 0.7800
+leg_notional = 2736.4
+signal_timeframe = "4h"
+rolling_window_ticks = 60
+min_samples = 45
+entry_zscore = 1.25
+exit_zscore = 0.50
+max_holding_bars = 98
+use_rolling_beta = true
+beta_min = 0.5850
+beta_max = 0.9750
+adverse_zscore = 1.50
+stop_loss_dollars = 100.0
+
+[[pairs]]
+id = "QQQ_XLK"
+a = "QQQ"
+b = "XLK"
+enabled = true
+beta = 3.1492
+leg_notional = 2633.4
+signal_timeframe = "4h"
+rolling_window_ticks = 60
+min_samples = 45
+entry_zscore = 1.25
+exit_zscore = 0.50
+max_holding_bars = 98
+use_rolling_beta = true
+beta_min = 2.3619
+beta_max = 3.9365
+adverse_zscore = 1.50
+stop_loss_dollars = 100.0
+
+[[pairs]]
+id = "DIA_SPY"
+a = "DIA"
+b = "SPY"
+enabled = true
+beta = 0.9775
+leg_notional = 4000.0
+signal_timeframe = "4h"
+rolling_window_ticks = 30
+min_samples = 22
+entry_zscore = 1.50
+exit_zscore = 0.00
+max_holding_bars = 48
+min_correlation = 0.50
+entry_confirmation_bars = 1
+min_expected_spread_move_after_costs = 100.0
+stop_loss_dollars = 100.0
+profit_protection_min_dollars = 50.0
+profit_protection_retrace_fraction = 0.50
+profit_protection_floor_dollars = 10.0
+
+[[pairs]]
+id = "EFA_EEM"
+a = "EFA"
+b = "EEM"
+enabled = true
+beta = 1.8000
+leg_notional = 1183.0
+signal_timeframe = "4h"
+rolling_window_ticks = 60
+min_samples = 45
+entry_zscore = 1.25
+exit_zscore = 0.50
+max_holding_bars = 98
+use_rolling_beta = true
+beta_min = 1.3500
+beta_max = 2.2500
+adverse_zscore = 1.50
+stop_loss_dollars = 100.0
